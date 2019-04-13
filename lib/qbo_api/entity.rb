@@ -13,8 +13,18 @@ class QboApi
       end
     end
 
-    def entity_path(entity)
-      "#{realm_id}/#{singular(entity).downcase}"
+    def entity_path(entity, params: nil)
+      case self.endpoint 
+      when :payments
+        if params.present? and params.key?(:customer_id)
+          customer_id = params[:customer_id]
+          "customers/#{customer_id}/#{entity.downcase}"
+        else
+          "payments/#{entity.downcase}"
+        end
+      else
+        "#{realm_id}/#{singular(entity).downcase}"
+      end
     end
 
     def snake_to_camel(sym)

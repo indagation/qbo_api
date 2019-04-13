@@ -26,7 +26,7 @@ class QboApi
   attr_accessor :endpoint
 
   V3_ENDPOINT_BASE_URL       = 'https://sandbox-quickbooks.api.intuit.com/v3/company/'
-  PAYMENTS_API_BASE_URL      = 'https://sandbox.api.intuit.com/quickbooks/v4/payments'
+  PAYMENTS_API_BASE_URL      = 'https://sandbox.api.intuit.com/quickbooks/v4/'
   LOG_TAG = "[QuickBooks]"
 
   # @param attributes [Hash<Symbol,String>]

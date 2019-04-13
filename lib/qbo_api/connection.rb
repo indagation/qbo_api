@@ -14,6 +14,7 @@ class QboApi
       headers ||= {}
       headers['Accept'] ||= 'application/json' # required "we'll only accept JSON". Can be changed to any `+json` media type.
       headers['Content-Type'] ||= 'application/json;charset=UTF-8' # required when request has a body, else harmless
+      headers['Request-Id'] = SecureRandom.uuid
       build_connection(url, headers: headers) do |conn|
         add_authorization_middleware(conn)
         add_exception_middleware(conn)

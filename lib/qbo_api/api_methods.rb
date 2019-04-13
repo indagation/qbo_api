@@ -44,7 +44,12 @@ class QboApi
     end
 
     def create(entity, payload:, params: nil)
-      request(:post, entity: entity, path: entity_path(entity), payload: payload, params: params)
+      if params.present? and params.key?(:customer_id)
+        customer_id = params.delete(:customer_id)
+        request(:post, entity: entity, path: entity_path(entity, params: {customer_id: customer_id}), payload: payload, params: params)
+      else
+        request(:post, entity: entity, path: entity_path(entity), payload: payload, params: params)
+      end
     end
 
     def update(entity, id:, payload:, params: nil)
